@@ -19,6 +19,9 @@ func main() {
 		if command == "exit 0" {
 			os.Exit(0)
 		}
+		if "echo" in command {
+			fmt.Printf("%s", strings.TrimRight(command, " "))
+		}
 		fmt.Printf("%s: command not found\n", strings.TrimRight(command, "\n"))
 	}
 }
