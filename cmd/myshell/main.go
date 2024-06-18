@@ -13,4 +13,7 @@ func main() {
 
 	// Wait for user input
 	bufio.NewReader(os.Stdin).ReadString('\n')
+	command, _ := bufio.NewReader(os.Stdin).ReadString('\n')
+
+	fmt.Fprint(os.Stdout, input[:len(command)-1]+": command not found\n")
 }
