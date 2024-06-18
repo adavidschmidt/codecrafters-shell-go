@@ -20,4 +20,4 @@ func main() {
 			fmt.Printf("%s: command not found\n", strings.TrimRight(command, "\n"))
 		}
 	}
-
+}
