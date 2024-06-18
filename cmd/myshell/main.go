@@ -2,7 +2,7 @@ package main
 
 import (
 	"bufio"
-	//Uncomment this block to pass the first stage
+	"strings"
 	"fmt"
 	"os"
 )
@@ -15,5 +15,5 @@ func main() {
 	
 	command, _ := bufio.NewReader(os.Stdin).ReadString('\n')
 
-	fmt.Printf(os.Stdout, input[:len(command)-1]+": command not found\n")
+	fmt.Printf("%s: command not found\n", strings.TrimRight(command, "\n"))
 }
