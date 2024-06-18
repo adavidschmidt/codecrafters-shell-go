@@ -17,7 +17,7 @@ func main() {
 		command, _ := reader.ReadString('\n')
 		command = strings.TrimSpace(command)
 		if command == "exit 0" {
-			os.exit(0)
+			os.Exit(0)
 		}
 		fmt.Printf("%s: command not found\n", strings.TrimRight(command, "\n"))
 	}
