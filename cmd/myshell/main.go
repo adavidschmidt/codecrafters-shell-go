@@ -15,7 +15,7 @@ func main() {
 	for {
 		fmt.Fprint(os.Stdout, "$ ")
 		command, err := reader.ReadString('\n')
-		command = strings.TrimRight(command)
+		command = strings.TrimSpace(command)
 		if err != nul {
 			fmt.Printf("%s: command not found\n", strings.TrimRight(command, "\n"))
 		}
