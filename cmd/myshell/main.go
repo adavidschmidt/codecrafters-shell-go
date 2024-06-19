@@ -22,6 +22,8 @@ func main() {
 		if strings.Contains(command, "echo") {
 			fmt.Printf("%s", strings.TrimRight(command, " "))
 		}
+		else {
 		fmt.Printf("%s: command not found\n", strings.TrimRight(command, "\n"))
+		}
 	}
 }
