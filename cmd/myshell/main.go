@@ -57,6 +57,7 @@ func runCode(a string, b string) bool {
 			}
 		}
 		fmt.Printf("%s: not found\n", a)
+		return false
 }
 
 func main() {
