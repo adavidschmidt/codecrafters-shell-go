@@ -73,12 +73,22 @@ func pwdGet() {
 	fmt.Println(directory)
 }
 
+func changeDir(a string) {
+	tokens := strings.Split(a, " ")
+	if len(tokens) > 1 {
+		err := os.Chdir(tokens[1])
+		if err != nil {
+			fmt.Printf("cd: %s: No such file or directory\n", tokens[1])
+		}
+	}
+}
+
 func main() {
 
 
 	// Wait for user input
 	reader := bufio.NewReader(os.Stdin)
-	listCommands := []string{"echo", "type", "exit", "pwd"}
+	listCommands := []string{"echo", "type", "exit", "pwd", "cd"}
 	for {
 		fmt.Fprint(os.Stdout, "$ ")
 		command, _ := reader.ReadString('\n')
@@ -97,6 +107,9 @@ func main() {
 		case tokens[0] == "pwd":
 			pwdGet()
 
+		case tokens[0] == "cd"
+			changeDir(command)
+			
 		default:
 			if !runCode(command) {
 				fmt.Printf("%s: command not found\n", command)
