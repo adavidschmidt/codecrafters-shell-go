@@ -16,12 +16,12 @@ func stringInSlice(a string, list []string) bool {
     return false
 }
 
-func runEcho(a []string) string {
+func runEcho(a []string) {
 	strings.Join(a, " ")
 	fmt.Printf("%s\n", a)
 }
 
-func runExit() nil {
+func runExit() {
 	os.Exit(0)
 }
 
