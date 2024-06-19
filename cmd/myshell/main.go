@@ -16,6 +16,30 @@ func stringInSlice(a string, list []string) bool {
     return false
 }
 
+func runEcho(a []string) string {
+	strings.Join(a, " ")
+	fmt.Printf("%s\n", a)
+}
+
+func runExit() nil {
+	os.Exit(0)
+}
+
+func runType(a string, b []string) {
+	if stringInSlice(a, b) {
+		fmt.Printf("%s is a shell builtin\n", a)
+	} else {
+		paths := strings.Split(os.Getenv, ":")
+		for _, path := paths {
+			dir := path + "/" + a
+			if _, err := os.Stat(dir); err == nil {
+				fmt.Printf("%s is %v\n", a, dir)
+			}
+		}
+		fmt.Printf("%s not found\n", a)
+	}
+}
+
 func main() {
 
 
@@ -27,22 +51,15 @@ func main() {
 		command, _ := reader.ReadString('\n')
 		tokens := strings.Fields(strings.TrimSpace(command))
 		command = strings.Join(tokens, " ")
-		path := strings.Split(os.Getenv("PATH"), ":")
 		switch {
 		case tokens[0] == "exit" && tokens[1] == "0":
-				os.Exit(0)
+			runExit()
 			
 		case tokens[0] == "echo":
-			fmt.Printf("%s\n", strings.Join(tokens[1:], " "))
+			runEcho(tokens[1:])
 		
-		case tokens[0] == "type" && stringInSlice(tokens[1], listCommands):
-			fmt.Printf("%s is a shell builtin\n", tokens[1])
-		
-		case tokens[0] == "type" && strings.Contains(tokens[1], path):
-			fmt.Printf("%s is %s", tokens[1], path) 
-		
-		case tokens[0] == "type" && !stringInSlice(tokens[1], listCommands):
-			fmt.Printf("%s: not found\n", tokens[1])
+		case tokens[0] == "type":
+			runType(tokens[1], listCommands)
 		
 		default:
 			fmt.Printf("%s: command not found\n", command)
