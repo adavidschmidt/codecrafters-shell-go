@@ -42,22 +42,27 @@ func runType(a string, b []string) {
 	} 	
 }
 
-func runCode(a string, b ...string) bool {
-	paths := strings.Split(os.Getenv("PATH"), ":")
-		for _, path := range paths {
-			dir := path + "/" + a
-			if _, err := os.Stat(dir); err == nil {
-				cmd := exec.Command(a, b)
-				cmd.Stdout = os.Stdout
-				cmd.Stdin = os.Stdin
-				if err := cmd.Run(); err != nil {
-					fmt.Printf("Error: %s", err)
+func runCode(a string) bool {
+	tokens := strings.Split(a, " ")
+	if len(tokens) > 1 {
+		paths := strings.Split(os.Getenv("PATH"), ":")
+			for _, path := range paths {
+				dir := path + "/" + tokens[0]
+				if _, err := os.Stat(dir); err == nil {
+					cmd := exec.Command(tokens[0], tokens[1])
+					cmd.Stdout = os.Stdout
+					cmd.Stdin = os.Stdin
+					if err := cmd.Run(); err != nil {
+						fmt.Printf("Error: %s", err)
+					}
+					return true
 				}
-				return true
 			}
+			
+			return false
+		} else {
+			return false
 		}
-		fmt.Printf("%s: not found\n", a)
-		return false
 }
 
 func main() {
@@ -82,7 +87,7 @@ func main() {
 			runType(tokens[1], listCommands)
 
 		default:
-			if !runCode(tokens[0], tokens[1]) {
+			if !runCode(command) {
 				fmt.Printf("%s: command not found\n", command)
 			}
 		}	
