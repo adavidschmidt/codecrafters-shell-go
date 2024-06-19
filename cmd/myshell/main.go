@@ -42,11 +42,11 @@ func runType(a string, b []string) {
 	} 	
 }
 
-func runCode(a string) {
+func runCode(a string, b string) {
 	paths := strings.Split(os.Getenv("PATH"), ":")
 		for _, path := range paths {
 			dir := path + "/" + a
-			if _, err := os.Stat(dir); err == nil {
+			if _, err := os.Stat(a, b); err == nil {
 				cmd := exec.Command(dir)
 				cmd.Stdout = os.Stdout
 				cmd.Stdin = os.Stdin
@@ -81,7 +81,7 @@ func main() {
 			runType(tokens[1], listCommands)
 
 		default:
-			runCode(tokens[0])
+			runCode(tokens[0], tokens[1])
 			fmt.Printf("%s: command not found\n", command)
 		}
 	}
