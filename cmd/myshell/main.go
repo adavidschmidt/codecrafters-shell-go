@@ -65,12 +65,16 @@ func runCode(a string) bool {
 		}
 }
 
+func pwdGet() {
+	fmt.Printf(os.Getwd())
+}
+
 func main() {
 
 
 	// Wait for user input
 	reader := bufio.NewReader(os.Stdin)
-	listCommands := []string{"echo", "type", "exit"}
+	listCommands := []string{"echo", "type", "exit", "pwd"}
 	for {
 		fmt.Fprint(os.Stdout, "$ ")
 		command, _ := reader.ReadString('\n')
@@ -85,6 +89,9 @@ func main() {
 		
 		case tokens[0] == "type":
 			runType(tokens[1], listCommands)
+
+		case tokens[0] == "pwd":
+			pwdGet()
 
 		default:
 			if !runCode(command) {
