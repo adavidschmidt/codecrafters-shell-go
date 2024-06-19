@@ -30,7 +30,7 @@ func runType(a string, b []string) {
 		fmt.Printf("%s is a shell builtin\n", a)
 	} else {
 		paths := strings.Split(os.Getenv, ":")
-		for _, path := paths {
+		for _, path := range paths {
 			dir := path + "/" + a
 			if _, err := os.Stat(dir); err == nil {
 				fmt.Printf("%s is %v\n", a, dir)
