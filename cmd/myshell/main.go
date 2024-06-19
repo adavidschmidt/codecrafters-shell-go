@@ -21,7 +21,7 @@ func main() {
 
 	// Wait for user input
 	reader := bufio.NewReader(os.Stdin)
-	listCommands := ["echo", "type", "exit"]
+	listCommands := []string{"echo", "type", "exit"}
 	for {
 		fmt.Fprint(os.Stdout, "$ ")
 		command, _ := reader.ReadString('\n')
@@ -32,7 +32,7 @@ func main() {
 				os.Exit(0)
 			
 		case tokens[0] == "echo":
-			fmt.Printf("%s", strings.Join(tokens[1:], " "))
+			fmt.Printf("%s\n", strings.Join(tokens[1:], " "))
 		
 		case tokens[0] == "type" && stringInSlice(tokens[1], listCommands):
 			fmt.Printf("%s is a shell builtin\n", tokens[1])
