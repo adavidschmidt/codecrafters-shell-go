@@ -17,7 +17,7 @@ func stringInSlice(a string, list []string) bool {
 }
 
 func runEcho(a []string) {
-	a = strings.Join(a, " ")
+	a := strings.Join(a, " ")
 	fmt.Printf("%s\n", a)
 }
 
