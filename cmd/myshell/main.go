@@ -81,7 +81,7 @@ func main() {
 			runType(tokens[1], listCommands)
 
 		default:
-			runCode(tokens[0], tokens[1])
+			runCode(tokens[0])
 			fmt.Printf("%s: command not found\n", command)
 		}
 	}
