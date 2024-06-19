@@ -66,7 +66,11 @@ func runCode(a string) bool {
 }
 
 func pwdGet() {
-	fmt.Printf(os.Getwd())
+	directory, err := os.Getwd()
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(directory)
 }
 
 func main() {
