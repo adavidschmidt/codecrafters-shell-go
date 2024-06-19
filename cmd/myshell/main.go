@@ -82,7 +82,7 @@ func main() {
 			runType(tokens[1], listCommands)
 
 		default:
-			if !runCode(tokens[0], tokens[1]) {
+			if _, err := !runCode(tokens[0], tokens[1]); err != nil {
 			fmt.Printf("%s: command not found\n", command)
 			}
 		}	
