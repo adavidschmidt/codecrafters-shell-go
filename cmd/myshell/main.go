@@ -34,6 +34,7 @@ func runType(a string, b []string) {
 			dir := path + "/" + a
 			if _, err := os.Stat(dir); err == nil {
 				fmt.Printf("%s is %v\n", a, dir)
+				return
 			}
 		}
 		fmt.Printf("%s not found\n", a)
