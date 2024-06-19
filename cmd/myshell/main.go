@@ -107,9 +107,9 @@ func main() {
 		case tokens[0] == "pwd":
 			pwdGet()
 
-		case tokens[0] == "cd"
+		case tokens[0] == "cd":
 			changeDir(command)
-			
+
 		default:
 			if !runCode(command) {
 				fmt.Printf("%s: command not found\n", command)
