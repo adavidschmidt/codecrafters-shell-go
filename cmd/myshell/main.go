@@ -75,10 +75,15 @@ func pwdGet() {
 
 func changeDir(a string) {
 	tokens := strings.Split(a, " ")
+	home := os.Getenv("HOME")
 	if len(tokens) > 1 {
+		if tokens[1] == "~" {
+			os.Chdir(home)
+		} else {
 		err := os.Chdir(tokens[1])
 		if err != nil {
 			fmt.Printf("cd: %s: No such file or directory\n", tokens[1])
+		}
 		}
 	}
 }
