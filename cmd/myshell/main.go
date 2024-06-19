@@ -37,6 +37,9 @@ func main() {
 		case tokens[0] == "type" && stringInSlice(tokens[1], listCommands):
 			fmt.Printf("%s is a shell builtin\n", tokens[1])
 		
+		case tokens[0] == "type" && strings.Contains(tokens[1], os.Getenv(PATH)):
+			fmt.Printf("%s is %s", tokens[1], os.Getenv(PATH)) 
+		
 		case tokens[0] == "type" && !stringInSlice(tokens[1], listCommands):
 			fmt.Printf("%s: not found\n", tokens[1])
 		
