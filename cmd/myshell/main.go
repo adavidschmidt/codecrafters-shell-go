@@ -28,7 +28,7 @@ func main() {
 			fmt.Printf("%s is a shell builtin\n", tokens[1])
 		
 		default:
-			fmt.Printf("%s: command not found\n")
+			fmt.Printf("%s: command not found\n", command)
 		}
 	}
 }
