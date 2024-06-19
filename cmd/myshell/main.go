@@ -15,16 +15,20 @@ func main() {
 	for {
 		fmt.Fprint(os.Stdout, "$ ")
 		command, _ := reader.ReadString('\n')
-		command = strings.TrimSpace(command)
-		if command == "exit 0" {
-			os.Exit(0)
-		}
-		if strings.Contains(command, "echo ") {
-			fmt.Printf("%s\n", strings.TrimLeft(command, " echo "))
-		} else if strings.Contains(command, "type echo") || strings.Contains(command, "type exit") {
-			fmt.Printf("%s is a shell builtin\n", strings.TrimLeft(command, "type ")) 
-		} else {
-		fmt.Printf("%s: command not found\n", strings.TrimRight(command, "\n"))
+		tokens := strings.Fields(strings.TrimSpace(command))
+		command = strings.Join(tokens, " ")
+		switch {
+		case tokens[0] == "exit" && tokens[1] == 0:
+				os.Exit(0)
+			
+		case tokens[0] == "echo":
+			fmt.Printf("%s", strings.Join(tokens[1:], " "))
+		
+		case tokens[0] == "type" && (tokens[1] == "echo" || tokens[1] == "exit"):
+			fmt.Printf("%s is a shell builtin\n", tokens[1])
+		
+		default:
+			fmt.Printf("%s: command not found\n")
 		}
 	}
 }
