@@ -46,8 +46,8 @@ func runCode(a string, b string) {
 	paths := strings.Split(os.Getenv("PATH"), ":")
 		for _, path := range paths {
 			dir := path + "/" + a
-			if _, err := os.Stat(a, b); err == nil {
-				cmd := exec.Command(dir)
+			if _, err := os.Stat(dir); err == nil {
+				cmd := exec.Command(a, b)
 				cmd.Stdout = os.Stdout
 				cmd.Stdin = os.Stdin
 				if err := cmd.Run(); err != nil {
