@@ -20,7 +20,7 @@ func main() {
 			os.Exit(0)
 		}
 		if strings.Contains(command, "echo") {
-			fmt.Printf("%s\n", strings.SplitAfterN(command, " ", 2))
+			fmt.Printf("%s\n", strings.TrimLeft(command, " echo "))
 		} else {
 		fmt.Printf("%s: command not found\n", strings.TrimRight(command, "\n"))
 		}
