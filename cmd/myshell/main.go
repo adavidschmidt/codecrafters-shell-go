@@ -18,7 +18,7 @@ func main() {
 		tokens := strings.Fields(strings.TrimSpace(command))
 		command = strings.Join(tokens, " ")
 		switch {
-		case tokens[0] == "exit" && tokens[1] == 0:
+		case tokens[0] == "exit" && tokens[1] == "0":
 				os.Exit(0)
 			
 		case tokens[0] == "echo":
