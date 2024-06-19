@@ -24,7 +24,7 @@ func main() {
 		case tokens[0] == "echo":
 			fmt.Printf("%s", strings.Join(tokens[1:], " "))
 		
-		case tokens[0] == "type" && (tokens[1] == "echo" || tokens[1] == "exit"):
+		case tokens[0] == "type" && (tokens[1] == "echo" || tokens[1] == "exit" || tokens[1] == "type"):
 			fmt.Printf("%s is a shell builtin\n", tokens[1])
 		
 		default:
