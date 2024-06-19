@@ -5,6 +5,7 @@ import (
 	"strings"
 	"fmt"
 	"os"
+	"os/exec"
 )
 
 func stringInSlice(a string, list []string) bool {
@@ -46,8 +47,10 @@ func runCode(a string, b string) {
 		for _, path := range paths {
 			dir := path + "/" + a
 			if _, err := os.Stat(dir); err == nil {
-				c := strings.Split(a, "_")
-				fmt.Printf("Hello %s! The secret code is %v\n", b, c[1])
+				cmd := exec.Command(a)
+				if err := cmd.Run(); err != nil {
+					log.Fatal(err)
+				}
 				return
 			}
 		}
@@ -75,10 +78,8 @@ func main() {
 		case tokens[0] == "type":
 			runType(tokens[1], listCommands)
 
-		case strings.Contains(tokens[0], "_"):
-			runCode(tokens[0], tokens[1])
-
 		default:
+			runCode(tokens[0], tokens[1])
 			fmt.Printf("%s: command not found\n", command)
 		}
 	}
