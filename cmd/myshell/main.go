@@ -22,7 +22,7 @@ func main() {
 		if strings.Contains(command, "echo") {
 			fmt.Printf("%s\n", strings.TrimLeft(command, " echo "))
 		} else if strings.Contains(command, "type echo") || strings.Contains(command, "type exit") {
-			fmt.Printf("%s is a shell builtin", strings.TrimLeft(command, "type ") 
+			fmt.Printf("%s is a shell builtin", strings.TrimLeft(command, "type ")) 
 		} else {
 		fmt.Printf("%s: command not found\n", strings.TrimRight(command, "\n"))
 		}
