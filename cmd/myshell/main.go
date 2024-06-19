@@ -18,7 +18,7 @@ func stringInSlice(a string, list []string) bool {
 
 func runEcho(a []string) {
 	b := strings.Join(a, " ")
-	fmt.Printf("%s\n", b)
+	fmt.Fprintf("%s\n", b)
 }
 
 func runExit() {
@@ -27,17 +27,17 @@ func runExit() {
 
 func runType(a string, b []string) {
 	if stringInSlice(a, b) {
-		fmt.Printf("%s is a shell builtin\n", a)
+		fmt.Fprintf("%s is a shell builtin\n", a)
 	} else {
 		paths := strings.Split(os.Getenv("PATH"), ":")
 		for _, path := range paths {
 			dir := path + "/" + a
 			if _, err := os.Stat(dir); err == nil {
-				fmt.Printf("%s is %v\n", a, dir)
+				fmt.Fprintf("%s is %v\n", a, dir)
 				return
 			}
 		}
-		fmt.Printf("%s: not found\n", a)
+		fmt.Fprintf("%s: not found\n", a)
 	} 	
 }
 
@@ -47,11 +47,11 @@ func runCode(a string, b string) {
 			dir := path + "/" + a
 			if _, err := os.Stat(dir); err == nil {
 				c := strings.Split(a, "_")
-				fmt.Printf("Hello %b! The secret code is %c", b, c[1])
+				fmt.Fprintf("Hello %s! The secret code is %v\n", b, c[1])
 				return
 			}
 		}
-		fmt.Printf("%s: not found\n", a)
+		fmt.Fprintf("%s: not found\n", a)
 }
 
 func main() {
@@ -79,7 +79,7 @@ func main() {
 			runCode(tokens[0], tokens[1])
 
 		default:
-			fmt.Printf("%s: command not found\n", command)
+			fmt.Fprintf("%s: command not found\n", command)
 		}
 	}
 }
