@@ -49,7 +49,7 @@ func runCode(a string, b string) {
 			if _, err := os.Stat(dir); err == nil {
 				cmd := exec.Command(a)
 				if err := cmd.Run(); err != nil {
-					log.Fatal(err)
+					fmt.Printf("Error: %s", err)
 				}
 				return
 			}
