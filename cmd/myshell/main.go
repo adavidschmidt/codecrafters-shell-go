@@ -19,7 +19,7 @@ func main() {
 		if command == "exit 0" {
 			os.Exit(0)
 		}
-		if strings.Contains(command, "echo") {
+		if strings.Contains(command, "echo ") {
 			fmt.Printf("%s\n", strings.TrimLeft(command, " echo "))
 		} else if strings.Contains(command, "type echo") || strings.Contains(command, "type exit") {
 			fmt.Printf("%s is a shell builtin", strings.TrimLeft(command, "type ")) 
