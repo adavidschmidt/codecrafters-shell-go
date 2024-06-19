@@ -29,7 +29,7 @@ func runType(a string, b []string) {
 	if stringInSlice(a, b) {
 		fmt.Printf("%s is a shell builtin\n", a)
 	} else {
-		paths := strings.Split(os.Getenv, ":")
+		paths := strings.Split(os.Getenv("PATH"), ":")
 		for _, path := range paths {
 			dir := path + "/" + a
 			if _, err := os.Stat(dir); err == nil {
