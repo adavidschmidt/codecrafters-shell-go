@@ -41,6 +41,19 @@ func runType(a string, b []string) {
 	} 	
 }
 
+func runCode(a string, b string) {
+	paths := strings.Split(os.Getenv("PATH"), ":")
+		for _, path := range paths {
+			dir := path + "/" + a
+			if _, err := os.Stat(dir); err == nil {
+				c := strings.Split(a, "_")
+				fmt.Printf("Hello %b! The secret code is %c", b, c[1])
+				return
+			}
+		}
+		fmt.Printf("%s: not found\n", a)
+}
+
 func main() {
 
 
@@ -61,7 +74,10 @@ func main() {
 		
 		case tokens[0] == "type":
 			runType(tokens[1], listCommands)
-		
+
+		case strings.Contains(tokens[0], "_"):
+			runCode(tokens[0], tokens[1])
+
 		default:
 			fmt.Printf("%s: command not found\n", command)
 		}
