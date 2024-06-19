@@ -38,7 +38,7 @@ func main() {
 			fmt.Printf("%s is a shell builtin\n", tokens[1])
 		
 		case tokens[0] == "type" && !stringInSlice(tokens[1], listCommands):
-			fmt.Printf("%s: command not found\n", tokens[1])
+			fmt.Printf("%s: not found\n", tokens[1])
 		
 		default:
 			fmt.Printf("%s: command not found\n", command)
