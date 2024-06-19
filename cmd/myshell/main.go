@@ -36,8 +36,8 @@ func runType(a string, b []string) {
 				fmt.Printf("%s is %v\n", a, dir)
 			}
 		}
-		fmt.Printf("%s not found", a)
 	}
+	fmt.Printf("%s not found\n", a)
 }
 
 func main() {
